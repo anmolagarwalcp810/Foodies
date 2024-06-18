@@ -32,8 +32,4 @@ Here is the ER Diagram of our database:
 
 
 ## Authors
-Anmol Agarwal
-
-Rashul Chutani
-
-(COL362 Project Group 15)
+Code developed by Anmol Agarwal and Rashul Chutani.
