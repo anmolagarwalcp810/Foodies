@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block contents %}
+<div class="jumbotron">
+  <h1 class="display-4"> List your restaurant on Foodies! </h1>
+  <hr class="my-4">
+  <form method = "post">
+      {{form.hidden_tag()}}
+      {{wtf.form_field(form.foodchain)}}<br>
+      {{wtf.form_field(form.categories)}}<br>
+      {{wtf.form_field(form.website)}}<br>
+      {{wtf.form_field(form.address)}}<br>
+      {{wtf.form_field(form.city)}}<br>
+      {{wtf.form_field(form.postalcode)}}<br>
+      <input class="btn btn-outline-primary" type="submit" value="Submit!">
+  </form>
+</div>
+{% endblock %}

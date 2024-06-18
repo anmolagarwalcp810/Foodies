@@ -1,0 +1,48 @@
+{% macro restaurantData(name,addr,postalcode,link,city,country,categories) -%}
+    <!-- <table class="table table-success table-striped"> -->
+    <div class="jumbotron">
+      <h1 class="display-4">{{name}}</h1>
+      <p class="lead">
+        Here are the details of the restaurant {{name}} {{city}} ...
+      </p>
+      <hr class="my-4">
+      <table class="table" style="width:75%;margin-left:auto;margin-right:auto">
+        <!-- <thead>
+          <tr>
+            <th scope="col">RestaurantDetail</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead> -->
+        <tbody>
+          <tr>
+            <th scope="row" style="text-align:center">Name</th>
+            <td style="text-align:center">{{name}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="text-align:center">Address</th>
+            <td style="text-align:center">{{addr}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="text-align:center">Postal Code</th>
+            <td style="text-align:center">{{postalcode}}</td>
+          </tr>
+          <!-- <tr>
+            <th scope="row">Link</th>
+            <td>{{link}}</td>
+          </tr> -->
+          <tr>
+            <th scope="row" style="text-align:center">City</th>
+            <td style="text-align:center">{{city}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="text-align:center">Country</th>
+            <td style="text-align:center">{{country}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="text-align:center">Categories</th>
+            <td style="text-align:center">{{categories}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+{%- endmacro %}

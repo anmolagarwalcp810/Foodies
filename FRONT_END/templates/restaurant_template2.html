@@ -1,0 +1,28 @@
+{% macro restaurantData(name,addr,postalcode,link,city,country,categories,websites) -%}
+<div class="col">
+  <div class="card text-center border-success mb-3" style="max-width: 18rem;">
+    <div class="card-header">Restaurant</div>
+    <!-- <h5 class="card-title">Restaurant</h5> -->
+    <div class="card-body text-success">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{name}}</li>
+        <li class="list-group-item">{{addr}}</li>
+        <li class="list-group-item">{{city}}</li>
+        <li class="list-group-item">
+          {{categories[0]}}
+        {% if categories|length > 1 %}
+          , {{categories[1]}}
+          {% endif %}
+        {% if categories|length > 2 %}
+          , {{categories[2]}}
+          {% endif %}
+        </li>
+      </ul>
+      <a href="{{url_for('restaurant_details',name=name,addr=addr,postalcode=postalcode,city=city,country=country,categories=categories)}}" class="btn btn-primary">
+        Know More
+      </a>
+      <a href={{websites[0]}} class="btn btn-primary">Visit Us</a>
+    </div>
+  </div>
+</div>
+{%- endmacro %}

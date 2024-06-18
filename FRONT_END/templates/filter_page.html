@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block contents %}
+<br>
+<h3> Location: {{ location }} </h3>
+<br>
+{% if IDs==True%}
+<h3>Sorry, no restaurants found!</h3>
+{% endif %}
+<div class="row row-cols-1 row-cols-md-5 g-4">
+  {% for i in l %}
+    {% import "restaurant_template2.html" as restaurant%}
+    {{ restaurant.restaurantData(
+      i['name'],i['addr'],i['postalcode'],i['link'],i['city'],i['country'],i['categories'],i['websites']
+      ) }}
+  {% endfor %}
+</div>
+<br>
+{% endblock %}

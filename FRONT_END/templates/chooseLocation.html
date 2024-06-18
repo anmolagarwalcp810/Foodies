@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block contents %}
+    <div class="jumbotron">
+      <h1 class="display-4">Find restaurants!</h1>
+      <p class="lead">Choose your location to find restaurants near you...</p>
+      <hr class="my-4">
+        <form method = "post">
+            {{form.hidden_tag()}}
+            {{wtf.form_field(form.location)}} <br>
+            <input class="btn btn-outline-primary" type="submit" value="Submit!">
+        </form>
+    </div>
+{% endblock %}

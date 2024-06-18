@@ -1,0 +1,46 @@
+{% macro popup(foodchains,categories,location) -%}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Filter
+</button>
+
+<!-- Modal -->
+<form action="{{url_for('filter_page',location=location)}}" method="get">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filter by FoodChain and Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="foodchain">
+            <option selected value=-1>Select FoodChain</option>
+            {% for i in foodchains %}
+                <option value={{i['foodchain_id']}}>{{i['foodchain']}}</option>
+            {% endfor %}
+            <!-- <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option> -->
+          </select>
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="category" multiple>
+            <!-- <option selected>Select Category</option> -->
+            {% for i in categories %}
+                <option value={{i['category_id']}}>{{i['category']}}</option>
+            {% endfor %}
+            <!-- <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option> -->
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">
+                Filter!
+              </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endmacro %}

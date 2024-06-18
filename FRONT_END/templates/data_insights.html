@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block contents %}
+<div class="jumbotron">
+  <h1 class="display-4"> Here are some Food Insights for your city, {{ city }}! </h1>
+  <p class="lead">Brought to you by Foodies...</p>
+    <hr class="my-4">
+  <img src="../static/ranking.png" class="img-fluid rounded mx-auto d-block" alt="Ranking" width="150"><br>
+    <ol class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Your city has {{number}} restaurants listed on Foodies!</div>
+      This is
+        {% if number < average %}
+            less
+        {% else %}
+            more
+        {% endif %}
+        than the national average of {{average}}.
+    </div>
+    <span class="badge bg-primary rounded-pill">{{ number }}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Your city vs national average on major foodchains!</div>
+      <canvas id="graph" width="400" height="300"></canvas>
+      <script type="text/javascript">
+        var plot_graph = new Chart(document.getElementById("graph").getContext("2d"), {
+          type: 'bar',
+          data: {
+            labels: [{% for i in national_aggregate_x%}
+                      "{{i}}",
+                     {% endfor %}
+            ],
+            datasets: [
+              { label: "National Avg",
+                backgroundColor: "rgba(211, 245, 149,1)",
+                data: [
+                  {% for i in national_aggregate_y %}
+                  {{i}},
+                  {% endfor %}
+                ]
+              },
+              { label: "City",
+                backgroundColor: "rgba(122, 235, 167,1)",
+                data: [
+                  {% for i in current_city_y %}
+                  {{i}},
+                  {% endfor %}
+                ]
+              },
+            ]
+          },
+        })
+      </script>
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Your city ranks {{rank}} in the list of highest restaurants in a city!</div>
+      In the US, {{highest_city}} has the highest number of restaurants, {{highest_number}}!
+    </div>
+    <span class="badge bg-primary rounded-pill">{{rank}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">The Latest restaurant in your city got added on {{ date.strftime('%d-%m-%Y') }}</div>
+      New Restaurants are getting added on Foodies every minute!
+    </div>
+  </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ largest_restaurant }} serves the best variety in your city!</div>
+      {{ largest_restaurant }} offers food across {{ largest_categories }} categories
+    </div>
+    <span class="badge bg-primary rounded-pill">{{ largest_categories }}</span>
+  </li>
+</ol>
+
+</div>
+{% endblock %}
